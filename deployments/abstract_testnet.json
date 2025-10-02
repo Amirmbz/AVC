@@ -1,0 +1,9 @@
+{
+  "contractAddress": "0x591b594f01ae53BFf6Fb44C5dA0a16a62c2f3f6c",
+  "contractName": "Abstract NFT Collection",
+  "contractSymbol": "ANC",
+  "network": "abstract_testnet",
+  "deployer": "0x976EA74026E726554dB657fA54763abd0C3a0aa9",
+  "deploymentTime": "2025-09-14T12:32:36.772Z",
+  "transactionHash": "0x59a3b222a1f8b0abd1e7af32ee4f340eb5ed29146d4a85b403a558903f0d904f"
+}

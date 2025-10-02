@@ -1,0 +1,32 @@
+{
+  "name": "abstract-nft-platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
+    "@types/pg": "^8.15.5",
+    "dotenv": "^17.2.2",
+    "hardhat": "^2.26.3",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.5.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.6",
+    "@prisma/client": "^6.16.1",
+    "ethers": "^6.15.0",
+    "pg": "^8.16.3",
+    "prisma": "^6.16.1"
+  }
+}

@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model NFT {
+  id          Int      @id @default(autoincrement())
+  tokenId     Int      @unique
+  name        String
+  description String
+  image       String
+  imageUrl    String?  // Full URL after upload
+  attributes  Json     // Store attributes as JSON
+  rarity      String?
+  rarityScore Float?
+  isMinted    Boolean  @default(false)
+  mintedTo    String?  // Wallet address
+  mintedAt    DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("nfts")
+}
+
+model Collection {
+  id            Int      @id @default(autoincrement())
+  name          String
+  symbol        String
+  description   String
+  totalSupply   Int
+  baseUri       String?
+  contractAddress String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("collections")
+}
+
+model Whitelist {
+  id          Int      @id @default(autoincrement())
+  address     String   @unique
+  merkleProof Json     // Store proof as JSON array
+  isUsed      Boolean  @default(false)
+  usedAt      DateTime?
+  createdAt   DateTime @default(now())
+
+  @@map("whitelist")
+}
+
+model Transaction {
+  id          Int      @id @default(autoincrement())
+  txHash      String   @unique
+  fromAddress String
+  toAddress   String
+  tokenIds    Json     // Array of minted token IDs
+  quantity    Int
+  totalCost   String   // Wei amount as string
+  gasUsed     String?
+  blockNumber Int?
+  status      String   // pending, success, failed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("transactions")
+}
