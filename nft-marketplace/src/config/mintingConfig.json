@@ -1,0 +1,22 @@
+﻿{
+  "contract": {
+    "address": "0x0000000000000000000000000000000000000000",
+    "partnerCollection": "0x0000000000000000000000000000000000000000",
+    "payoutRecipients": [
+      {"label": "Recipient A","address": "0x1111111111111111111111111111111111111111","bps": 2500},
+      {"label": "Recipient B","address": "0x2222222222222222222222222222222222222222","bps": 2500},
+      {"label": "Recipient C","address": "0x3333333333333333333333333333333333333333","bps": 2500},
+      {"label": "Recipient D","address": "0x4444444444444444444444444444444444444444","bps": 2500}
+    ],
+    "royaltyReceiver": "0x5555555555555555555555555555555555555555",
+    "royaltyFeeBps": 500
+  },
+  "lists": {
+    "whitelist": [
+      {"address": "0x8888888888888888888888888888888888888888","note": "Example whitelist wallet","merkleProof": []}
+    ],
+    "freeMint": [
+      {"address": "0x9999999999999999999999999999999999999999","note": "Example free mint wallet","merkleProof": []}
+    ]
+  }
+}
