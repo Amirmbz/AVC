@@ -532,7 +532,7 @@ button {
 
 .who-image-wave video {
   width: 100%;
-  background-size: cover;
+  object-fit: cover;
 }
 
 .who-text {
@@ -1035,6 +1035,7 @@ input[type='number'] {
   }
 
   .gallery-heading {
+    margin: 2.5rem 0;
     font-size: 24px;
   }
 
@@ -1152,6 +1153,7 @@ input[type='number'] {
   }
 
   .gallery-heading {
+    margin: 1rem 0;
     font-size: 12px;
   }
 
