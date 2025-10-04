@@ -35,6 +35,23 @@ const API_BASE_URL = (process.env.REACT_APP_API_BASE_URL || "").replace(
 
 const Web3Context = createContext(null);
 
+const MINT_INFO_DISABLED = true;
+
+const ABSTRACT_CHAIN_ID = parseInt(process.env.REACT_APP_ABSTRACT_CHAIN_ID || '0', 10);
+const ABSTRACT_CHAIN_ID_HEX = process.env.REACT_APP_ABSTRACT_CHAIN_ID_HEX || '0x0';
+const ABSTRACT_NETWORK = {
+  chainId: ABSTRACT_CHAIN_ID_HEX,
+  chainName: process.env.REACT_APP_ABSTRACT_CHAIN_NAME || 'Abstract',
+  nativeCurrency: {
+    name: process.env.REACT_APP_ABSTRACT_NATIVE_NAME || 'ETH',
+    symbol: process.env.REACT_APP_ABSTRACT_NATIVE_SYMBOL || 'ETH',
+    decimals: Number(process.env.REACT_APP_ABSTRACT_NATIVE_DECIMALS || 18),
+  },
+  rpcUrls: [process.env.REACT_APP_ABSTRACT_RPC_URL || ''].filter(Boolean),
+  blockExplorerUrls: [process.env.REACT_APP_ABSTRACT_EXPLORER_URL || ''].filter(Boolean),
+};
+
+
 export const Web3Provider = ({ children }) => {
   const [account, setAccount] = useState(null);
 
@@ -47,43 +64,17 @@ export const Web3Provider = ({ children }) => {
   const [isConnecting, setIsConnecting] = useState(false);
 
   const [balance, setBalance] = useState("0");
-
-  const ABSTRACT_CHAIN_ID = 11124;
-
-  const ABSTRACT_NET = {
-    chainId: "0x2B74",
-
-    chainName: "Abstract Testnet",
-
-    nativeCurrency: {
-      name: "ETH",
-
-      symbol: "ETH",
-
-      decimals: 18,
-    },
-
-    rpcUrls: ["https://api.testnet.abs.xyz/"],
-
-    blockExplorerUrls: ["https://sepolia.abscan.org"],
-  };
-
   const formatAddress = (value) => {
-    if (!value) return "";
-
+    if (!value) return '';
     return `${value.substring(0, 6)}...${value.substring(value.length - 4)}`;
   };
 
   const disconnect = () => {
     setAccount(null);
-
     setProvider(null);
-
     setSigner(null);
-
     setChainId(null);
-
-    setBalance("0");
+    setBalance('0');
   };
 
   const handleAccountsChanged = (accounts) => {
@@ -168,7 +159,7 @@ export const Web3Provider = ({ children }) => {
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
 
-        params: [{ chainId: ABSTRACT_NET.chainId }],
+        params: [{ chainId: ABSTRACT_NETWORK.chainId }],
       });
     } catch (switchError) {
       const errorCode =
@@ -179,13 +170,13 @@ export const Web3Provider = ({ children }) => {
           await window.ethereum.request({
             method: "wallet_addEthereumChain",
 
-            params: [ABSTRACT_NET],
+            params: [ABSTRACT_NETWORK],
           });
 
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",
 
-            params: [{ chainId: ABSTRACT_NET.chainId }],
+            params: [{ chainId: ABSTRACT_NETWORK.chainId }],
           });
         } catch (addError) {
           console.error("Error adding Abstract network:", addError);
@@ -316,8 +307,6 @@ export const Web3Provider = ({ children }) => {
 
     connectWallet,
 
-    disconnect,
-
     switchToAbstract,
 
     formatAddress,
@@ -352,8 +341,6 @@ const WalletConnection = () => {
 
     connectWallet,
 
-    disconnect,
-
     switchToAbstract,
 
     formatAddress,
@@ -387,9 +374,6 @@ const WalletConnection = () => {
             </button>
           )}
 
-          <button className="button-plain" onClick={disconnect}>
-            Disconnect
-          </button>
         </div>
       )}
     </div>
@@ -397,7 +381,7 @@ const WalletConnection = () => {
 };
 
 const WalletButton = () => {
-  const { isConnected, connectWallet, disconnect, formatAddress, account } =
+  const { isConnected, connectWallet, formatAddress, account } =
     useWeb3();
 
   if (!isConnected) {
@@ -411,10 +395,6 @@ const WalletButton = () => {
   return (
     <div className="nav-wallet-connected">
       <span className="badge badge-success mono">{formatAddress(account)}</span>
-
-      <button className="button-plain" onClick={disconnect}>
-        Sign out
-      </button>
     </div>
   );
 };
@@ -743,8 +723,10 @@ const HomePage = () => {
           className="hero-video"
           src={heroAnimation}
           controls={false}
-          loop
           autoPlay
+          loop
+          muted
+          playsInline
         />
         <div className="hero-copy">
           <span className="hero-eyebrow">The vibes are better.</span>
@@ -797,7 +779,7 @@ const HomePage = () => {
         id="who-section"
       >
         <div className="who-image who-image-wave">
-          <video src={waveVideo} autoPlay loop controls={false} />
+          <video src={waveVideo} autoPlay loop muted playsInline controls={false} />
         </div>
 
         <div className="who-copy">
@@ -1050,10 +1032,7 @@ const MobileMenu = ({ isOpen, setIsMenuOpen, handleNavigate }) => {
           FAQs
         </button>
 
-        <button
-          type="button"
-          onClick={() => handleNavigate("status", "status-section")}
-        >
+        <button type="button" onClick={() => handleNavigate("status", "status-section")} disabled={MINT_INFO_DISABLED}>
           Mint Info
         </button>
       </div>
@@ -1065,7 +1044,7 @@ const MobileMenu = ({ isOpen, setIsMenuOpen, handleNavigate }) => {
           type="button"
           className="button-secondary"
           onClick={() => handleNavigate("status", "status-section")}
-        >
+         disabled={MINT_INFO_DISABLED}>
           View Status
         </button>
       </div>
@@ -1112,7 +1091,7 @@ const App = () => {
           <div className="nav-pill">
             <button type="button" onClick={() => handleNavigate("home")}>
               <img src={Logo.default} />
-            </button>{" "}
+            </button>
             <button
               className="navbar-links"
               type="button"
@@ -1159,9 +1138,9 @@ const App = () => {
               type="button"
               className="mint-info-desktop navbar-links"
               onClick={() => handleNavigate("status", "status-section")}
-            >
+              disabled={MINT_INFO_DISABLED}>
               Mint Info
-            </button>{" "}
+            </button>
             {isMenuOpen ? (
               <img className="mobile-menu-toggle" src={Cross.default} />
             ) : (
@@ -1192,7 +1171,7 @@ const App = () => {
             Who We Are
           </a>{" "}
           <a onClick={() => handleNavigate("home", "faq-section")}>FAQs</a>{" "}
-          <a onClick={() => handleNavigate("status", "status-section")}>
+          <a onClick={MINT_INFO_DISABLED ? undefined : () => handleNavigate("status", "status-section")} aria-disabled={MINT_INFO_DISABLED}>
             Mint Info
           </a>
           <div className="mobile-wallet">
@@ -1305,7 +1284,7 @@ const WalletStatus = () => {
             isCorrectNetwork ? "badge-success" : "badge-warning"
           }`}
         >
-          {chainId} {isCorrectNetwork ? "" : "(switch to 11124)"}
+          {chainId} {isCorrectNetwork ? "" : `(switch to ${ABSTRACT_CHAIN_ID})`}
         </span>
       </div>
 
@@ -1472,3 +1451,5 @@ const ImageSlider = () => {
     </section>
   );
 };
+
+
