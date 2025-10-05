@@ -24,6 +24,8 @@ import {
   Logo,
   Twitter,
   TwitterBlack,
+  DiscordDisabled,
+  ExpDisabled,
 } from "../assets/svg";
 
 // import waveImage from "../assets/image/2.jpg";
@@ -547,8 +549,28 @@ const HomePage = () => {
     {
       question: "What makes you different?",
 
-      answer:
-        "Every AVC piece is crafted individually, no trait farming and no mass-generated combos. Holders can expect immersive drops, live activations, and collabs that treat characters like performers, not collectibles.",
+      answer: `
+      AVC is built with <strong>Creator Capital Markets (CCM)</strong> iin mind from day one.<br />
+      While most collections stop at PFPs, we’re designing for <strong>streamable, expressive digital identity</strong>.<br />
+      That means:
+      <ul>
+      <li>3D models of characters</li>
+      <li>Vtuber-style rigging and animation-ready assets</li>
+      <li>Storyline and lore potential baked into the art</li>
+      <li>A roadmap that supports creators, not just collectors</li>
+      </ul>
+      We’re not building a brand we’re building a culture engine for Abstract and beyond.<br /><br />
+      <strong>Who is the team?</strong><br />
+      We’re anonymous by choice, united by culture. Artists, designers, motion directors, degen traders, all with past experience launching, growing, and supporting NFT projects. GVC holders. Abstract believers.
+      <br /><br />
+      <strong>What’s the vision?</strong><br />
+      AVC is a digital collectible project focused on quality art and authentic vibes. We aim to shape the visual culture of Abstract by combining on-chain energy with premium design and curated community drops.      <br /><br />
+      <strong>Why Abstract?</strong><br />
+      Because it’s new, fast, and growing, but still missing the iconic culture mint. We’re building AVC to fill that gap: clean UX, great design, no ETH gas, and full community alignment.
+      <br /><br />
+      <strong>When is the mint?</strong><br />
+      Early October (exact date TBD). GVC holders are already whitelisted. Follow the X to stay updated. 
+      `,
     },
   ];
 
@@ -966,11 +988,11 @@ const HomePage = () => {
       </section>
 
       <section className="join-footer">
-          <img
-            className="footer-image"
-            src={resourcePath("/assets/landing/reply-assets/6.png")}
-            alt="AVC FAQ"
-          />
+        <img
+          className="footer-image"
+          src={resourcePath("/assets/landing/reply-assets/6.png")}
+          alt="AVC FAQ"
+        />
         <div className="join-copy-container">
           <div className="join-copy">
             <h2 className="section-title">
@@ -1038,7 +1060,9 @@ const HomePage = () => {
                 Mint Info
               </a>{" "}
             </div>
-          <p className="copy-right">AVC © 2025 | Created with good vibes 💚</p>
+            <p className="copy-right">
+              AVC © 2025 | Created with good vibes 💚
+            </p>
           </div>
         </div>
       </section>
@@ -1119,7 +1143,7 @@ const MobileMenu = ({ isOpen, setIsMenuOpen, handleNavigate }) => {
 const App = () => {
   const [currentPage, setCurrentPage] = useState("home");
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -1221,7 +1245,7 @@ const App = () => {
           </div>
         </nav>
 
-        <div className="mobile-menu" style={{ display: !isMenuOpen && "none" }}>
+        <div className="mobile-menu" style={{ opacity: !isMenuOpen ? 0 : 1 }}>
           <div className="logo-container">
             <button type="button" onClick={() => handleNavigate("home")}>
               <img src={Logo.default} />
@@ -1229,7 +1253,7 @@ const App = () => {
             <img
               className="mobile-menu-toggle"
               src={Cross.default}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>
           <a onClick={() => handleNavigate("home", "who-section")}>
@@ -1263,16 +1287,17 @@ const App = () => {
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon"
-            >
-              <img src={DiscordBlack.default} />
+              >
+              <img src={DiscordDisabled.default} />
             </a>{" "}
             <a
               href="https://discord.com"
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon"
+              style={{width: 30}}
             >
-              <img src={ExpBlack.default} />
+              <img src={ExpDisabled.default} />
             </a>
           </div>
         </div>
