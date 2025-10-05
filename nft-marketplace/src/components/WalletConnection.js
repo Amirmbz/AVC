@@ -12,6 +12,8 @@ import { ethers } from "ethers";
 
 import MintingInterface from "./MintingInterface";
 import {
+  ArrowDown,
+  ArrowRight,
   Cross,
   Discord,
   DiscordBlack,
@@ -37,20 +39,25 @@ const Web3Context = createContext(null);
 
 const MINT_INFO_DISABLED = true;
 
-const ABSTRACT_CHAIN_ID = parseInt(process.env.REACT_APP_ABSTRACT_CHAIN_ID || '0', 10);
-const ABSTRACT_CHAIN_ID_HEX = process.env.REACT_APP_ABSTRACT_CHAIN_ID_HEX || '0x0';
+const ABSTRACT_CHAIN_ID = parseInt(
+  process.env.REACT_APP_ABSTRACT_CHAIN_ID || "0",
+  10
+);
+const ABSTRACT_CHAIN_ID_HEX =
+  process.env.REACT_APP_ABSTRACT_CHAIN_ID_HEX || "0x0";
 const ABSTRACT_NETWORK = {
   chainId: ABSTRACT_CHAIN_ID_HEX,
-  chainName: process.env.REACT_APP_ABSTRACT_CHAIN_NAME || 'Abstract',
+  chainName: process.env.REACT_APP_ABSTRACT_CHAIN_NAME || "Abstract",
   nativeCurrency: {
-    name: process.env.REACT_APP_ABSTRACT_NATIVE_NAME || 'ETH',
-    symbol: process.env.REACT_APP_ABSTRACT_NATIVE_SYMBOL || 'ETH',
+    name: process.env.REACT_APP_ABSTRACT_NATIVE_NAME || "ETH",
+    symbol: process.env.REACT_APP_ABSTRACT_NATIVE_SYMBOL || "ETH",
     decimals: Number(process.env.REACT_APP_ABSTRACT_NATIVE_DECIMALS || 18),
   },
-  rpcUrls: [process.env.REACT_APP_ABSTRACT_RPC_URL || ''].filter(Boolean),
-  blockExplorerUrls: [process.env.REACT_APP_ABSTRACT_EXPLORER_URL || ''].filter(Boolean),
+  rpcUrls: [process.env.REACT_APP_ABSTRACT_RPC_URL || ""].filter(Boolean),
+  blockExplorerUrls: [process.env.REACT_APP_ABSTRACT_EXPLORER_URL || ""].filter(
+    Boolean
+  ),
 };
-
 
 export const Web3Provider = ({ children }) => {
   const [account, setAccount] = useState(null);
@@ -65,7 +72,7 @@ export const Web3Provider = ({ children }) => {
 
   const [balance, setBalance] = useState("0");
   const formatAddress = (value) => {
-    if (!value) return '';
+    if (!value) return "";
     return `${value.substring(0, 6)}...${value.substring(value.length - 4)}`;
   };
 
@@ -74,7 +81,7 @@ export const Web3Provider = ({ children }) => {
     setProvider(null);
     setSigner(null);
     setChainId(null);
-    setBalance('0');
+    setBalance("0");
   };
 
   const handleAccountsChanged = (accounts) => {
@@ -373,7 +380,6 @@ const WalletConnection = () => {
               Switch to Abstract
             </button>
           )}
-
         </div>
       )}
     </div>
@@ -381,8 +387,7 @@ const WalletConnection = () => {
 };
 
 const WalletButton = () => {
-  const { isConnected, connectWallet, formatAddress, account } =
-    useWeb3();
+  const { isConnected, connectWallet, formatAddress, account } = useWeb3();
 
   if (!isConnected) {
     return (
@@ -529,14 +534,14 @@ const HomePage = () => {
       question: "What is AVC?",
 
       answer:
-        "Abstract Vibes Cabal is an artist-led universe built on Abstract. We blend handcrafted 3D characters, music, storytelling, and community-driven experiences into one evolving world.",
+        "AVC (Abstract Vibes Cabal) is a 4,444-piece, art-forward NFT collection launching on Abstract.<br /> It’s designed for degens, collectors, and creators who value aesthetic, culture, and connection, with a deep focus on <strong>Creator Capital Markets</strong>. <br />Each character is built with storytelling and streamability in mind. From profile picture to 3D-ready avatar, we’re building tools to let holders bring their NFTs to life in the emerging CCM era,  through content, Vtubing, and digital identity.",
     },
 
     {
       question: "Are you a derivative of GVC?",
 
       answer:
-        "No derivatives. AVC is original IP. Our avatars, lore, and experiences are created in-house by a crew of designers, writers, musicians, and 3D artists.",
+        "No, AVC is not a derivative of GVC. <br /><br /> We are deeply inspired by what GVC created on Ethereum, and many of us are active GVC holders. But AVC is its own identity, built <strong>natively for Abstract</strong>.<br />We wanted to create something original that fit the culture, UX, and speed of Abstract while still rewarding a community we’re proud to be part of.<br />That’s why GVC holders are <strong>automatically whitelisted</strong>, and will continue to be rewarded throughout the AVC journey.",
     },
 
     {
@@ -729,15 +734,15 @@ const HomePage = () => {
           playsInline
         />
         <div className="hero-copy">
-          <span className="hero-eyebrow">The vibes are better.</span>
-
-          <h1 className="hero-title">Abstract Vibes Cabal is here</h1>
+          <h1 className="hero-title">
+            The vibes are better.<br></br> Abstract Vibes Cabal is here
+          </h1>
 
           <p className="hero-subtitle">
             An art-forward, vibe-first NFT collection built natively for
-            Abstract and built for the rise of Creator Capital Markets. Designed
-            by artists, traders, and Web3 degens who loved GVC, but wanted more
-            vibes on Abstract.
+            Abstract and built for the rise of Creator Capital Markets.<br></br>{" "}
+            Designed by artists, traders, and Web3 degens who loved GVC, but
+            wanted more Vibes on Abstract.{" "}
           </p>
         </div>
       </section>
@@ -760,7 +765,12 @@ const HomePage = () => {
               {...cardProps}
             >
               {/* <span className="hero-card-icon">{card.icon}</span> */}
-              <img className="hero-card-icon" src={card.icon} />
+              <img
+                className={`hero-card-icon ${
+                  card.title === "Discord" ? "hero-card-icon-discord" : ""
+                }`}
+                src={card.icon}
+              />
 
               <div className="hero-card-body mt-5">
                 <span className="hero-card-title" style={{ color: card.color }}>
@@ -779,29 +789,40 @@ const HomePage = () => {
         id="who-section"
       >
         <div className="who-image who-image-wave">
-          <video src={waveVideo} autoPlay loop muted playsInline controls={false} />
+          <video
+            src={waveVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls={false}
+          />
         </div>
+        <div className="who-copy-container">
+          <div className="who-copy">
+            {/* <span className="section-tag">Who is behind AVC?</span> */}
 
-        <div className="who-copy">
-          {/* <span className="section-tag">Who is behind AVC?</span> */}
+            <h2 className="section-title">
+              {/* A collective of artists, designers, and vibesmiths. */}
+              Who is behind AVC?
+            </h2>
 
-          <h2 className="section-title">
-            {/* A collective of artists, designers, and vibesmiths. */}
-            Who is behind AVC?
-          </h2>
+            <div className="section-description-container">
+              <p className="section-description">
+                We’re a collective of artists, designers, traders, and long-time
+                Web3 builders. Most of us are GVC holders. Some of us are whales
+                of other NFTs. All of us believe Abstract is ready for its first
+                true culture mint.
+              </p>
 
-          <p className="section-description">
-            We are a collective of artists, designers, traders, and long-time
-            Web3 builders. Most of us are GVC holders. Some of us are whales of
-            other NFTs. All of us believe Abstract is ready for its first true
-            culture mint.
-          </p>
-
-          <p className="section-description">
-            We are not a brand. We are not a studio. We are a crew of people who
-            love art and vibes, and know how to build things that matter. This
-            is AVC. Built for Abstract.
-          </p>
+              <p className="section-description">
+                We’re not a brand. We’re not a studio. We’re a crew of people
+                who love art and vibes, and know how to build things that
+                matter.
+                <br /> This is AVC. Built for Abstract.{" "}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -820,40 +841,45 @@ const HomePage = () => {
       </section>
 
       <section className="who-are-we" id="who-are-we">
-        <div className="who-text">
-          <h2 className="section-title">Who Are We?</h2>
-
-          <p className="section-description" style={{ marginTop: "16px" }}>
-            We are a collective of designers, artists, motion creators, and
-            traders who have spent years in Web3, launching, collecting, and
-            vibing with the best of what the space has to offer. Most of us hold
-            GVC. Some of us are whales. All of us are obsessed with art,
-            culture, and building real communities.
-          </p>
-
-          <p className="section-description" style={{ marginTop: "16px" }}>
-            We have been watching Abstract grow, fast UX, new metas, high
-            energy. But it has been missing that project, the one that defines
-            the culture. That is what AVC is built to be.{" "}
-            <strong>This is not just another mint.</strong> We are building AVC
-            to thrive in the next phase of NFTs:{" "}
-            <strong>Creator Capital Markets</strong>, a world where holders are
-            not just collectors, they are streamers, performers, and
-            co-creators.
-          </p>
-
-          <p className="section-description" style={{ marginTop: "16px" }}>
-            That is why AVC is not just art. Every character is being built with
-            3D modeling in mind, so you can eventually bring your PFP to life
-            like a vtuber, use it in live streams, or flex it in virtual scenes.
-          </p>
-
-          <p className="section-description" style={{ marginTop: "16px" }}>
-            No IP traps. No broken promises. Just expressive, usable identity.
-            We are not a brand. We are a cabal of creators, artists, and vibes.
-          </p>
+        <div className="who-text-container">
+          <div className="who-text">
+            <h2 className="section-title">Who Are We?</h2>
+            <p className="section-description seprate-who-text-title">
+              We’re a collective of designers, artists, motion creators, and
+              traders who’ve spent years in Web3, launching, collecting, and
+              vibing with the best of what the space has to offer.
+            </p>
+            <p className="section-description">
+              Most of us hold GVC. Some of us are whales. All of us are obsessed
+              with art, culture, and building real communities. {" "}
+            </p>
+            <p className="section-description seprate-who-text">
+              We’ve been watching Abstract grow, fast UX, new metas, high
+              energy. But it’s been missing that project, the one
+            </p>
+            <p className="section-description">
+              that defines the culture. That’s what AVC is built to be.{" "}
+              <strong>This is not just another mint.</strong> We’re building AVC
+              to thrive in the next phase of NFTs:{" "}
+            </p>{" "}
+            <p className="section-description">
+              <strong>Creator Capital Markets</strong>, a world where holders
+              are not just collectors, they are streamers, performers, and
+              co-creators.{" "}
+            </p>
+            {/* <p className="section-description" style={{ marginTop: "16px" }}>
+              That is why AVC is not just art. Every character is being built
+              with 3D modeling in mind, so you can eventually bring your PFP to
+              life like a vtuber, use it in live streams, or flex it in virtual
+              scenes.
+            </p>
+            <p className="section-description" style={{ marginTop: "16px" }}>
+              No IP traps. No broken promises. Just expressive, usable identity.
+              We are not a brand. We are a cabal of creators, artists, and
+              vibes.
+            </p> */}
+          </div>
         </div>
-
         <div className="who-figure">
           <img
             src={resourcePath("/assets/landing/reply-assets/3.png")}
@@ -862,7 +888,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="section-spacer">
+      <section>
         <div className="video-frame">
           <video className="video-feed" autoPlay muted loop playsInline>
             <source
@@ -875,13 +901,13 @@ const HomePage = () => {
 
       <section className="minting-interface">
         <div className="video-copy">
-          <p className="section-description" style={{ fontWeight: 600 }}>
+          <p className="section-description">
             That is why AVC is not just art. Every character is being built with
             3D modeling in mind, so you can eventually bring your PFP to life
             like a vtuber, use it in live streams, or flex it in virtual scenes.
           </p>
 
-          <p className="section-description" style={{ fontWeight: 600 }}>
+          <p className="section-description">
             No IP traps. No broken promises. Just expressive, usable identity.
             We are not a brand. We are a cabal of creators, artists, and vibes.
           </p>
@@ -893,8 +919,8 @@ const HomePage = () => {
         style={{ backgroundColor: "#F7B0EE" }}
         id="faq-section"
       >
-        <div className="page-shell" style={{ padding: "0px" }}>
-          <div className="faq-card" style={{ width: "40%" }}>
+        <div className="faq-container" style={{ padding: "0px" }}>
+          <div className="faq-card">
             <h2 className="section-title">FAQs</h2>
 
             <div className="faq-list">
@@ -910,85 +936,118 @@ const HomePage = () => {
                     <div className="faq-question">
                       <span>{item.question}</span>
 
-                      <span className="arrow-opener">{isOpen ? "-" : "+"}</span>
+                      <span className="arrow-opener">
+                        {isOpen ? (
+                          <img src={ArrowDown.default} />
+                        ) : (
+                          <img src={ArrowRight.default} />
+                        )}
+                      </span>
                     </div>
 
-                    {isOpen && <div className="faq-answer">{item.answer}</div>}
+                    {isOpen && (
+                      <div
+                        className="faq-answer"
+                        dangerouslySetInnerHTML={{ __html: item.answer }}
+                      />
+                    )}
                   </div>
                 );
               })}
             </div>
           </div>
-
-          <div className="faq-card">
-            <img
-              className="faq-image"
-              src={resourcePath("/assets/landing/reply-assets/5.png")}
-              alt="AVC FAQ"
-              style={{
-                borderRadius: "24px",
-              }}
-            />
-          </div>
         </div>
+
+        <img
+          className="faq-image"
+          src={resourcePath("/assets/landing/reply-assets/5.png")}
+          alt="AVC FAQ"
+        />
       </section>
 
       <section className="join-footer">
-        <div className="join-visual">
           <img
             className="footer-image"
             src={resourcePath("/assets/landing/reply-assets/6.png")}
             alt="AVC FAQ"
           />
-        </div>
+        <div className="join-copy-container">
+          <div className="join-copy">
+            <h2 className="section-title">
+              Enter your wallet to be raffled into a WL giveaway, for better
+              vibes.{" "}
+            </h2>
 
-        <div className="join-copy">
-          <h2 className="section-title">
-            Enter your wallet to be raffled into a WL giveaway, for better
-            vibes.{" "}
-          </h2>
+            <form onSubmit={handleWalletSubmit}>
+              <input
+                type="text"
+                placeholder="Enter your EVM wallet address "
+                value={walletInput}
+                onChange={(event) => setWalletInput(event.target.value)}
+                autoComplete="off"
+              />
 
-          <form onSubmit={handleWalletSubmit}>
-            <input
-              type="text"
-              placeholder="Enter your EVM wallet address "
-              value={walletInput}
-              onChange={(event) => setWalletInput(event.target.value)}
-              autoComplete="off"
-            />
+              <div className="button-container">
+                <button
+                  type="button"
+                  className="paste-button"
+                  onClick={handlePasteClick}
+                  disabled={!canUseClipboard}
+                >
+                  Paste
+                </button>
 
-            <div className="button-container">
-              <button
-                type="button"
-                className="paste-button"
-                onClick={handlePasteClick}
-                disabled={!canUseClipboard}
+                <button
+                  type="submit"
+                  disabled={isSubmitting || !walletInput.trim()}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit"}
+                </button>
+              </div>
+            </form>
+
+            {submitMessage && (
+              <p className="form-feedback success">{submitMessage}</p>
+            )}
+
+            {submitError && (
+              <p className="form-feedback error">{submitError}</p>
+            )}
+            <div className="footer-pill" style={{ width: "100%" }}>
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="nav-pill-icon"
               >
-                Paste
-              </button>
-
-              <button
-                type="submit"
-                disabled={isSubmitting || !walletInput.trim()}
+                <img src={TwitterBlack.default} />
+              </a>
+              <a
+                href="https://discord.com"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="nav-pill-icon"
               >
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </button>
+                <img src={DiscordBlack.default} />
+              </a>{" "}
+              <a
+                href="https://discord.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Mint Info
+              </a>{" "}
             </div>
-          </form>
-
-          {submitMessage && (
-            <p className="form-feedback success">{submitMessage}</p>
-          )}
-
-          {submitError && <p className="form-feedback error">{submitError}</p>}
+          <p className="copy-right">AVC © 2025 | Created with good vibes 💚</p>
+          </div>
         </div>
       </section>
 
-      {isConnected && (
+      {/* {isConnected && (
         <div className="section-spacer">
           <WalletStatus />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
@@ -1032,7 +1091,11 @@ const MobileMenu = ({ isOpen, setIsMenuOpen, handleNavigate }) => {
           FAQs
         </button>
 
-        <button type="button" onClick={() => handleNavigate("status", "status-section")} disabled={MINT_INFO_DISABLED}>
+        <button
+          type="button"
+          onClick={() => handleNavigate("status", "status-section")}
+          disabled={MINT_INFO_DISABLED}
+        >
           Mint Info
         </button>
       </div>
@@ -1044,7 +1107,8 @@ const MobileMenu = ({ isOpen, setIsMenuOpen, handleNavigate }) => {
           type="button"
           className="button-secondary"
           onClick={() => handleNavigate("status", "status-section")}
-         disabled={MINT_INFO_DISABLED}>
+          disabled={MINT_INFO_DISABLED}
+        >
           View Status
         </button>
       </div>
@@ -1138,7 +1202,8 @@ const App = () => {
               type="button"
               className="mint-info-desktop navbar-links"
               onClick={() => handleNavigate("status", "status-section")}
-              disabled={MINT_INFO_DISABLED}>
+              disabled={MINT_INFO_DISABLED}
+            >
               Mint Info
             </button>
             {isMenuOpen ? (
@@ -1171,7 +1236,14 @@ const App = () => {
             Who We Are
           </a>{" "}
           <a onClick={() => handleNavigate("home", "faq-section")}>FAQs</a>{" "}
-          <a onClick={MINT_INFO_DISABLED ? undefined : () => handleNavigate("status", "status-section")} aria-disabled={MINT_INFO_DISABLED}>
+          <a
+            onClick={
+              MINT_INFO_DISABLED
+                ? undefined
+                : () => handleNavigate("status", "status-section")
+            }
+            aria-disabled={MINT_INFO_DISABLED}
+          >
             Mint Info
           </a>
           <div className="mobile-wallet">
@@ -1313,37 +1385,37 @@ const WalletStatus = () => {
 export default App;
 
 const ImageSlider = () => {
-  const [heroStripImages, setHeroStripImages] = useState([
+  const [heroStripImagesUp, setHeroStripImagesUp] = useState([
     // Your image URLs here
-    "/assets/landing/hero/001.png",
-
-    "/assets/landing/hero/0015.png",
-
-    "/assets/landing/hero/002.png",
-
-    "/assets/landing/hero/007.png",
-
-    "/assets/landing/hero/008.png",
-
-    "/assets/landing/hero/011.png",
-
-    "/assets/landing/hero/014.png",
-
-    "/assets/landing/hero/Elisa.png",
-
-    "/assets/landing/hero/Fat.png",
-
-    "/assets/landing/hero/Flower.jpg",
-
-    "/assets/landing/hero/Robot.png",
-
-    "/assets/landing/hero/TMA.png",
-
-    "/assets/landing/hero/Wale.png",
-
-    "/assets/landing/hero/X-Ray.png",
+    "/assets/landing/imageSlider/up/1.png",
+    "/assets/landing/imageSlider/up/2.png",
+    "/assets/landing/imageSlider/up/3.png",
+    "/assets/landing/imageSlider/up/4.png",
+    "/assets/landing/imageSlider/up/5.png",
+    "/assets/landing/imageSlider/up/6.png",
+    "/assets/landing/imageSlider/up/7.png",
+    "/assets/landing/imageSlider/up/8.png",
+    "/assets/landing/imageSlider/up/9.png",
+    "/assets/landing/imageSlider/up/10.png",
+    "/assets/landing/imageSlider/up/11.png",
+    "/assets/landing/imageSlider/up/12.png",
 
     // ... add all your images
+  ]);
+  const [heroStripImagesDown, setHeroStripImagesDown] = useState([
+    // Your image URLs here
+    "/assets/landing/imageSlider/down/1.png",
+    "/assets/landing/imageSlider/down/2.png",
+    "/assets/landing/imageSlider/down/3.png",
+    "/assets/landing/imageSlider/down/4.png",
+    "/assets/landing/imageSlider/down/5.png",
+    "/assets/landing/imageSlider/down/6.png",
+    "/assets/landing/imageSlider/down/7.png",
+    "/assets/landing/imageSlider/down/8.png",
+    "/assets/landing/imageSlider/down/9.png",
+    "/assets/landing/imageSlider/down/10.png",
+    "/assets/landing/imageSlider/down/11.png",
+    "/assets/landing/imageSlider/down/12.png",
   ]);
 
   const sliderRef1 = useRef(null);
@@ -1409,11 +1481,11 @@ const ImageSlider = () => {
         cancelAnimationFrame(animationRef2.current);
       }
     };
-  }, [heroStripImages]);
+  }, [heroStripImagesUp, heroStripImagesDown]);
 
-  const reversedDuplicatedImages = [...heroStripImages]
+  const reversedDuplicatedImages = [...heroStripImagesDown]
     .reverse()
-    .concat([...heroStripImages].reverse());
+    .concat([...heroStripImagesDown].reverse());
 
   return (
     <section>
@@ -1424,11 +1496,12 @@ const ImageSlider = () => {
       {/* First Slider */}
       <div className="slider-container">
         <div ref={sliderRef1} className="slider-track">
-          {[...heroStripImages, ...heroStripImages].map((src, index) => (
+          {[...heroStripImagesUp, ...heroStripImagesUp].map((src, index) => (
             <img
               key={`slider1-${index}`}
               src={src}
               alt="AVC roster"
+              loading="lazy"
               className="slider-image"
             />
           ))}
@@ -1443,6 +1516,7 @@ const ImageSlider = () => {
               key={`slider2-${index}`}
               src={src}
               alt="AVC roster"
+              loading="lazy"
               className="slider-image"
             />
           ))}
@@ -1451,5 +1525,3 @@ const ImageSlider = () => {
     </section>
   );
 };
-
-

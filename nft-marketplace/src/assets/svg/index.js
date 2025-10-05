@@ -8,3 +8,5 @@ export * as DiscordBlack from "./discord_black.svg";
 export * as Logo from "./logo.svg";
 export * as Hamburger from "./hamburger.svg"
 export * as Cross from "./x.svg"
+export * as ArrowRight from "./arrow_right.svg"
+export * as ArrowDown from "./arrow_down.svg"
