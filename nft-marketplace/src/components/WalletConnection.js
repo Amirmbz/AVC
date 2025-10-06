@@ -453,7 +453,7 @@ const HomePage = () => {
 
       accent: "rgba(239, 68, 228, 0.2)",
 
-      href: "https://x.com",
+      href: "https://x.com/ABSVibesCabal",
 
       color: "#FF82F2",
     },
