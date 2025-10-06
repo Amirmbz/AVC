@@ -461,7 +461,7 @@ const HomePage = () => {
     {
       icon: Discord.default,
 
-      title: "Discord",
+      title: "Coming Soon",
 
       caption: "Coming soon",
 
@@ -475,7 +475,7 @@ const HomePage = () => {
     {
       icon: Exp.default,
 
-      title: "Experiences",
+      title: "Coming Soon",
 
       caption: "Coming soon",
 
@@ -489,7 +489,7 @@ const HomePage = () => {
     {
       icon: Instagram.default,
 
-      title: "Instagram",
+      title: "Coming Soon",
 
       caption: "Coming soon",
 
