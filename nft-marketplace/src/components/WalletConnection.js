@@ -1045,7 +1045,7 @@ const HomePage = () => {
                 <img src={TwitterBlack.default} />
               </a>
               <a
-                href="https://discord.com"
+                href=""
                 target="_blank"
                 rel="noreferrer noopener"
                 className="nav-pill-icon"
@@ -1053,7 +1053,7 @@ const HomePage = () => {
                 <img src={DiscordDisabled.default} />
               </a>{" "}
               <a
-                href="https://discord.com"
+                href=""
                 target="_blank"
                 rel="noreferrer noopener"
               >
