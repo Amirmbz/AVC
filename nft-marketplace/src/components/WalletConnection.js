@@ -569,7 +569,7 @@ const HomePage = () => {
       Because it’s new, fast, and growing, but still missing the iconic culture mint. We’re building AVC to fill that gap: clean UX, great design, no ETH gas, and full community alignment.
       <br /><br />
       <strong>When is the mint?</strong><br />
-      Early October (exact date TBD). GVC holders are already whitelisted. Follow the X to stay updated. 
+      Early October (exact date TBD). GVC holders are already whitelisted.Follow the X to stay updated. 
       `,
     },
   ];
@@ -873,7 +873,7 @@ const HomePage = () => {
             </p>
             <p className="section-description">
               Most of us hold GVC. Some of us are whales. All of us are obsessed
-              with art, culture, and building real communities. {" "}
+              with art, culture, and building real communities.{" "}
             </p>
             <p className="section-description seprate-who-text">
               We’ve been watching Abstract grow, fast UX, new metas, high
@@ -1143,7 +1143,7 @@ const MobileMenu = ({ isOpen, setIsMenuOpen, handleNavigate }) => {
 const App = () => {
   const [currentPage, setCurrentPage] = useState("home");
 
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -1245,7 +1245,7 @@ const App = () => {
           </div>
         </nav>
 
-        <div className="mobile-menu" style={{ opacity: !isMenuOpen ? 0 : 1 }}>
+        <div className="mobile-menu" style={{ opacity: !isMenuOpen ? 0 : 1, zIndex: !isMenuOpen ? -1 : 40 }}>
           <div className="logo-container">
             <button type="button" onClick={() => handleNavigate("home")}>
               <img src={Logo.default} />

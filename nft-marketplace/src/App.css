@@ -282,7 +282,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  z-index: 40;
+  z-index: -1;
   height: fit-content;
   transition: opacity ease .5s;
 }
