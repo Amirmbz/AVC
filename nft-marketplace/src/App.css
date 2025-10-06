@@ -389,7 +389,7 @@ button {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(357deg, #FFF 9.51%, rgba(255, 255, 255, 0.00) 83.13%);
+  background: linear-gradient(360deg, #FFF 9.51%, rgba(255, 255, 255, 0.00) 83.13%);
   z-index: 1;
 }
 
@@ -569,7 +569,7 @@ button {
   justify-content: space-between;
   padding-left: 10%; */
   /* max-width: 1214px; */
-  margin: 100px auto 0 auto;
+  margin: 60px auto 0 auto;
   position: relative;
 
 }
@@ -588,6 +588,16 @@ button {
 .who-text {
   max-width: 778px;
   margin-right: auto;
+}
+
+.who-text .section-description {
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: -.8px;
+}
+
+.seprate-who-text-title {
+  margin-top: 40px !important;
 }
 
 .seprate-who-text {
@@ -765,9 +775,9 @@ button {
 
 .footer-image {
   position: absolute;
-  width: 987px;
-  left: -270px;
-  top: -280px;
+  width: 1400px;
+  left: -400px;
+  top: -450px;
 }
 
 .join-footer {
@@ -1272,7 +1282,7 @@ input[type='number'] {
   }
 
   .footer-image {
-    left: -450px;
+    left: -655px;
   }
 
   .join-footer input {
@@ -1385,6 +1395,8 @@ input[type='number'] {
 
   .who-text .section-description {
     font-size: 10px;
+    letter-spacing: -0.4px;
+    line-height: 20px;
   }
 
   .gallery-heading {
@@ -1395,6 +1407,9 @@ input[type='number'] {
   .hero-title {
     margin: 0;
     font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -0.64px;
   }
 
   .hero-subtitle {

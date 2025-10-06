@@ -411,7 +411,7 @@ const resourcePath = (relative) => `${process.env.PUBLIC_URL}${relative}`;
 const HomePage = () => {
   const { isConnected, account } = useWeb3();
 
-  const [activeFaq, setActiveFaq] = useState(0);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const [walletInput, setWalletInput] = useState("");
 
@@ -1037,7 +1037,7 @@ const HomePage = () => {
             )}
             <div className="footer-pill" style={{ width: "100%" }}>
               <a
-                href="https://x.com"
+                href="https://x.com/ABSVibesCabal"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="nav-pill-icon"
@@ -1050,7 +1050,7 @@ const HomePage = () => {
                 rel="noreferrer noopener"
                 className="nav-pill-icon"
               >
-                <img src={DiscordBlack.default} />
+                <img src={DiscordDisabled.default} />
               </a>{" "}
               <a
                 href="https://discord.com"
@@ -1103,7 +1103,7 @@ const MobileMenu = ({ isOpen, setIsMenuOpen, handleNavigate }) => {
       <div className="mobile-menu-links">
         <button
           type="button"
-          onClick={() => handleNavigate("home", "who-section")}
+          onClick={() => handleNavigate("home", "who-are-we")}
         >
           Who We Are
         </button>
@@ -1183,7 +1183,7 @@ const App = () => {
             <button
               className="navbar-links"
               type="button"
-              onClick={() => handleNavigate("home", "who-section")}
+              onClick={() => handleNavigate("home", "who-are-we")}
             >
               Who We Are
             </button>
@@ -1196,7 +1196,7 @@ const App = () => {
             </button>
             {/* <span className="nav-pill-divider" /> */}
             <a
-              href="https://x.com"
+              href="https://x.com/ABSVibesCabal"
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon navbar-links"
@@ -1209,7 +1209,7 @@ const App = () => {
               rel="noreferrer noopener"
               className="nav-pill-icon navbar-links"
             >
-              <img src={DiscordBlack.default} />
+              <img src={DiscordDisabled.default} />
             </a>{" "}
             <a
               href="https://discord.com"
@@ -1217,7 +1217,7 @@ const App = () => {
               rel="noreferrer noopener"
               className="nav-pill-icon navbar-links"
             >
-              <img src={ExpBlack.default} />
+              <img src={ExpDisabled.default} />
             </a>
           </div>
 
@@ -1245,7 +1245,13 @@ const App = () => {
           </div>
         </nav>
 
-        <div className="mobile-menu" style={{ opacity: !isMenuOpen ? 0 : 1, zIndex: !isMenuOpen ? -1 : 40 }}>
+        <div
+          className="mobile-menu"
+          style={{
+            opacity: !isMenuOpen ? 0 : 1,
+            zIndex: !isMenuOpen ? -1 : 40,
+          }}
+        >
           <div className="logo-container">
             <button type="button" onClick={() => handleNavigate("home")}>
               <img src={Logo.default} />
@@ -1256,9 +1262,7 @@ const App = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>
-          <a onClick={() => handleNavigate("home", "who-section")}>
-            Who We Are
-          </a>{" "}
+          <a onClick={() => handleNavigate("home", "who-are-we")}>Who We Are</a>{" "}
           <a onClick={() => handleNavigate("home", "faq-section")}>FAQs</a>{" "}
           <a
             onClick={
@@ -1275,7 +1279,7 @@ const App = () => {
           </div>
           <div className="mobile-socials-container">
             <a
-              href="https://x.com"
+              href="https://x.com/ABSVibesCabal"
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon"
@@ -1287,7 +1291,7 @@ const App = () => {
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon"
-              >
+            >
               <img src={DiscordDisabled.default} />
             </a>{" "}
             <a
@@ -1295,7 +1299,7 @@ const App = () => {
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon"
-              style={{width: 30}}
+              style={{ width: 30 }}
             >
               <img src={ExpDisabled.default} />
             </a>
@@ -1412,35 +1416,35 @@ export default App;
 const ImageSlider = () => {
   const [heroStripImagesUp, setHeroStripImagesUp] = useState([
     // Your image URLs here
-    "/assets/landing/imageSlider/up/1.png",
-    "/assets/landing/imageSlider/up/2.png",
-    "/assets/landing/imageSlider/up/3.png",
-    "/assets/landing/imageSlider/up/4.png",
-    "/assets/landing/imageSlider/up/5.png",
-    "/assets/landing/imageSlider/up/6.png",
-    "/assets/landing/imageSlider/up/7.png",
-    "/assets/landing/imageSlider/up/8.png",
-    "/assets/landing/imageSlider/up/9.png",
-    "/assets/landing/imageSlider/up/10.png",
-    "/assets/landing/imageSlider/up/11.png",
-    "/assets/landing/imageSlider/up/12.png",
+    "/assets/landing/imageSlider/up/1.jpeg",
+    "/assets/landing/imageSlider/up/2.jpeg",
+    "/assets/landing/imageSlider/up/3.jpeg",
+    "/assets/landing/imageSlider/up/4.jpeg",
+    "/assets/landing/imageSlider/up/5.jpeg",
+    "/assets/landing/imageSlider/up/6.jpeg",
+    "/assets/landing/imageSlider/up/7.jpeg",
+    "/assets/landing/imageSlider/up/8.jpeg",
+    "/assets/landing/imageSlider/up/9.jpeg",
+    "/assets/landing/imageSlider/up/10.jpeg",
+    "/assets/landing/imageSlider/up/11.jpeg",
+    "/assets/landing/imageSlider/up/12.jpeg",
 
     // ... add all your images
   ]);
   const [heroStripImagesDown, setHeroStripImagesDown] = useState([
     // Your image URLs here
-    "/assets/landing/imageSlider/down/1.png",
-    "/assets/landing/imageSlider/down/2.png",
-    "/assets/landing/imageSlider/down/3.png",
-    "/assets/landing/imageSlider/down/4.png",
-    "/assets/landing/imageSlider/down/5.png",
-    "/assets/landing/imageSlider/down/6.png",
-    "/assets/landing/imageSlider/down/7.png",
-    "/assets/landing/imageSlider/down/8.png",
-    "/assets/landing/imageSlider/down/9.png",
-    "/assets/landing/imageSlider/down/10.png",
-    "/assets/landing/imageSlider/down/11.png",
-    "/assets/landing/imageSlider/down/12.png",
+    "/assets/landing/imageSlider/down/1.jpeg",
+    "/assets/landing/imageSlider/down/2.jpeg",
+    "/assets/landing/imageSlider/down/3.jpeg",
+    "/assets/landing/imageSlider/down/4.jpeg",
+    "/assets/landing/imageSlider/down/5.jpeg",
+    "/assets/landing/imageSlider/down/6.jpeg",
+    "/assets/landing/imageSlider/down/7.jpeg",
+    "/assets/landing/imageSlider/down/8.jpeg",
+    "/assets/landing/imageSlider/down/9.jpeg",
+    "/assets/landing/imageSlider/down/10.jpeg",
+    "/assets/landing/imageSlider/down/11.jpeg",
+    "/assets/landing/imageSlider/down/12.jpeg",
   ]);
 
   const sliderRef1 = useRef(null);
