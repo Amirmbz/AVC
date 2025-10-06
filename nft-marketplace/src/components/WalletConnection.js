@@ -1045,7 +1045,7 @@ const HomePage = () => {
                 <img src={TwitterBlack.default} />
               </a>
               <a
-                href="#"
+                aria-disabled={true}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="nav-pill-icon"
@@ -1053,7 +1053,7 @@ const HomePage = () => {
                 <img src={DiscordDisabled.default} />
               </a>{" "}
               <a
-                href="#"
+                aria-disabled={true}
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -1204,7 +1204,7 @@ const App = () => {
               <img src={TwitterBlack.default} />
             </a>
             <a
-              href="#"
+              aria-disabled={true}
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon navbar-links"
@@ -1212,7 +1212,7 @@ const App = () => {
               <img src={DiscordDisabled.default} />
             </a>{" "}
             <a
-              href="#"
+              aria-disabled={true}
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon navbar-links"
@@ -1287,15 +1287,16 @@ const App = () => {
               <img src={TwitterBlack.default} />
             </a>
             <a
-              href="#"
+              
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon"
+              aria-disabled={true}
             >
               <img src={DiscordDisabled.default} />
             </a>{" "}
             <a
-              href="#"
+              aria-disabled={true}
               target="_blank"
               rel="noreferrer noopener"
               className="nav-pill-icon"
