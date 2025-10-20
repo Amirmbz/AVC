@@ -32,7 +32,11 @@ import {
   WalletButton,
   Web3Provider,
 } from "../../components/WalletConnection";
-import { IoIosArrowDown, IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import {
+  IoIosArrowDown,
+  IoMdArrowDropleft,
+  IoMdArrowDropright,
+} from "react-icons/io";
 
 import mintGif from "../../assets/video/mint.gif";
 
@@ -535,25 +539,25 @@ function MintInfo() {
             <div className="steps">
               {phases.map((item) => (
                 <Fragment key={item.id}>
-                <div className="accordion">
-                  <div className="title">
-                    <span>{item.title}</span>
-                    <div className="actions">
-                      <img src={LockRed.default} alt="" />
-                      <IoIosArrowDown
-                        color="#fff"
-                        fontSize={20}
-                        width={20}
-                        height={20}
-                      />
+                  <div className="accordion">
+                    <div className="title">
+                      <span>{item.title}</span>
+                      <div className="actions">
+                        <img src={LockRed.default} alt="" />
+                        <IoIosArrowDown
+                          color="#fff"
+                          fontSize={20}
+                          width={20}
+                          height={20}
+                        />
+                      </div>
                     </div>
+                    <div
+                      className="description"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    />
                   </div>
-                  <div
-                    className="description"
-                    dangerouslySetInnerHTML={{ __html: item.description }}
-                  />
-                </div>
-{item.id === 0  && <div className="divider" />}
+                  {item.id === 0 && <div className="divider" />}
                 </Fragment>
               ))}
             </div>

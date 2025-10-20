@@ -432,7 +432,7 @@
 
         img {
             width: 140px;
-            height: 307px;
+            height: auto;
             border-radius: 16px;
         }
     }
@@ -497,6 +497,7 @@
                 .title {
                     span {
                         font-size: 8px;
+                        line-height: 12px;
                     }
 
                     .actions {
