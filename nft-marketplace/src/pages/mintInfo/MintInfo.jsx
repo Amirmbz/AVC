@@ -616,7 +616,7 @@ function MintInfo() {
           </div>
         </div>
         <div className="mint-actions">
-          {!isConnected ? (
+          {isConnected ? (
             <Fragment>
               <div className="counter">
                 <IoMdArrowDropleft
