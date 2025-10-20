@@ -25,6 +25,7 @@ import {
   ExpWhite,
   LogoWhite,
   LockRed,
+  LockerWhiteOpen,
 } from "../../assets/svg";
 
 import {
@@ -39,6 +40,7 @@ import {
 } from "react-icons/io";
 
 import mintGif from "../../assets/video/mint.gif";
+import { startCountdown } from "../../utils/functions";
 
 const API_BASE_URL = (process.env.REACT_APP_API_BASE_URL || "").replace(
   /\/$/,
@@ -49,30 +51,19 @@ const Web3Context = createContext(null);
 
 const MINT_INFO_DISABLED = true;
 
-const ABSTRACT_CHAIN_ID = parseInt(
-  process.env.REACT_APP_ABSTRACT_CHAIN_ID || "0",
-  10
-);
-const ABSTRACT_CHAIN_ID_HEX =
-  process.env.REACT_APP_ABSTRACT_CHAIN_ID_HEX || "0x0";
-const ABSTRACT_NETWORK = {
-  chainId: ABSTRACT_CHAIN_ID_HEX,
-  chainName: process.env.REACT_APP_ABSTRACT_CHAIN_NAME || "Abstract",
-  nativeCurrency: {
-    name: process.env.REACT_APP_ABSTRACT_NATIVE_NAME || "ETH",
-    symbol: process.env.REACT_APP_ABSTRACT_NATIVE_SYMBOL || "ETH",
-    decimals: Number(process.env.REACT_APP_ABSTRACT_NATIVE_DECIMALS || 18),
-  },
-  rpcUrls: [process.env.REACT_APP_ABSTRACT_RPC_URL || ""].filter(Boolean),
-  blockExplorerUrls: [process.env.REACT_APP_ABSTRACT_EXPLORER_URL || ""].filter(
-    Boolean
-  ),
-};
+const MAX_COUNTER = 10;
+const PHASE_1 = true;
+const PHASE_1_DUE = "2025/10/22";
+const PHASE_1_PRICE = 0.02;
+const PHASE_2 = true;
+const PHASE_2_DUE = "2025/10/29";
+const PHASE_2_PRICE = 0.04;
 
 const resourcePath = (relative) => `${process.env.PUBLIC_URL}${relative}`;
 
 function MintInfo() {
-  const { isConnected, connectWallet, formatAddress, account } = useWeb3();
+  const { isConnected, connectWallet, isConnecting, formatAddress, account } =
+    useWeb3();
 
   const [activeFaq, setActiveFaq] = useState(null);
 
@@ -106,6 +97,9 @@ function MintInfo() {
 
   const [counter, setCounter] = useState(1);
 
+  const [remainigPhase1, setRemainigPhase1] = useState("");
+  const [remainigPhase2, setRemainigPhase2] = useState("");
+
   const tags = [
     {
       id: 0,
@@ -114,32 +108,6 @@ function MintInfo() {
     {
       id: 1,
       text: "ERC-721",
-    },
-  ];
-
-  const phases = [
-    {
-      id: 0,
-      title: "Phase 1 - Vibelist - Ended",
-      description: `
-        Connect your wallet to check If you are on the Vibeslist
-        <br />
-        pay .015 Eth to claim your mint. you can mint, up to 2 NFTs
-
-      `,
-    },
-    {
-      id: 1,
-      title: "Phase 2 - Public sale - Ending in 7D 12h 32m 31s",
-      description: `
-        Starting in 72 hours
-        <br />
-        First come first served
-        <br />
-        Open until supply is fully sold
-        <br />
-        Mint as many you like at .02 each 
-      `,
     },
   ];
 
@@ -365,6 +333,23 @@ function MintInfo() {
     }
   };
 
+  useEffect(() => {
+    let timer1 = startCountdown(PHASE_1_DUE, (time) => {
+      setRemainigPhase1(
+        `${time.days}D ${time.hours}h ${time.minutes}m ${time.seconds}s`
+      );
+    });
+    let timer2 = startCountdown(PHASE_2_DUE, (time) => {
+      setRemainigPhase2(
+        `${time.days}D ${time.hours}h ${time.minutes}m ${time.seconds}s`
+      );
+    });
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
+
   return (
     <div>
       <div className="mint-info-section">
@@ -537,29 +522,66 @@ function MintInfo() {
               </div>
             </div>
             <div className="steps">
-              {phases.map((item) => (
-                <Fragment key={item.id}>
-                  <div className="accordion">
-                    <div className="title">
-                      <span>{item.title}</span>
-                      <div className="actions">
-                        <img src={LockRed.default} alt="" />
-                        <IoIosArrowDown
-                          color="#fff"
-                          fontSize={20}
-                          width={20}
-                          height={20}
-                        />
-                      </div>
-                    </div>
-                    <div
-                      className="description"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
+              {/* {phases.map((item) => (
+                <Fragment key={item.id}> */}
+              <div className="accordion">
+                <div className="title">
+                  <span>
+                    Phase 1 - Vibelist -{" "}
+                    {PHASE_1 ? `Ending in ${remainigPhase1}` : "Ended"}
+                  </span>
+                  <div className="actions">
+                    <img
+                      src={PHASE_1 ? LockerWhiteOpen.default : LockRed.default}
+                      alt=""
+                    />
+                    <IoIosArrowDown
+                      color="#fff"
+                      fontSize={20}
+                      width={20}
+                      height={20}
                     />
                   </div>
-                  {item.id === 0 && <div className="divider" />}
-                </Fragment>
-              ))}
+                </div>
+                <div className="description">
+                  Connect your wallet to check If you are on the Vibeslist
+                  <br />
+                  pay {PHASE_1_PRICE} Eth to claim your mint. you can mint, up
+                  to 2 NFTs
+                </div>
+              </div>
+              <div className="divider" />
+              <div className="accordion">
+                <div className="title">
+                  <span>
+                    Phase 2 - Public sale -{" "}
+                    {PHASE_2 ? `Ending in ${remainigPhase2}` : "Ended"}
+                  </span>
+                  <div className="actions">
+                    <img
+                      src={PHASE_2 ? LockerWhiteOpen.default : LockRed.default}
+                      alt=""
+                    />
+                    <IoIosArrowDown
+                      color="#fff"
+                      fontSize={20}
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                </div>
+                <div className="description">
+                  Starting in 72 hours
+                  <br />
+                  First come first served
+                  <br />
+                  Open until supply is fully sold
+                  <br />
+                  Mint as many you like at {PHASE_2_PRICE} each
+                </div>
+              </div>
+              {/* </Fragment>
+              ))} */}
             </div>
           </div>
         </div>
@@ -578,22 +600,34 @@ function MintInfo() {
                 <span>{counter}</span>
                 <IoMdArrowDropright
                   fontSize={30}
-                  onClick={() => setCounter((prev) => prev + 1)}
+                  style={{ color: counter >= MAX_COUNTER ? "#D5D5D5" : "" }}
+                  onClick={() => {
+                    if (counter >= MAX_COUNTER) return;
+                    setCounter((prev) => prev + 1);
+                  }}
                 />
               </div>
               <div className="mint-button-container">
                 <button>
-                  Mint 2 for 0.03 - using{" "}
-                  <span style={{ color: "#2CADF7" }}>Abstract</span> ETH
+                  Mint {counter} for{" "}
+                  {(
+                    counter * (PHASE_1 ? PHASE_1_PRICE : PHASE_2_PRICE)
+                  ).toFixed(2)}{" "}
+                  - using <span style={{ color: "#0ECF74" }}>Abstract</span> ETH
                 </button>
                 <button>
-                  Mint 2 for 0.03 - using{" "}
-                  <span style={{ color: "#0ECF74" }}>Mainnet</span> ETH
+                  Mint {counter} for{" "}
+                  {(
+                    counter * (PHASE_1 ? PHASE_1_PRICE : PHASE_2_PRICE)
+                  ).toFixed(2)}{" "}
+                  - using <span style={{ color: "#2CADF7" }}>Mainnet</span> ETH
                 </button>
               </div>
             </Fragment>
           ) : (
-            <button className="connect">Connect Wallet</button>
+            <button className="connect" onClick={connectWallet}>
+              {isConnecting ? "Connecting..." : "Connect Wallet"}
+            </button>
           )}
         </div>
         <div className="mint-description">
