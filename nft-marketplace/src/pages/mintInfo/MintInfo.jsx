@@ -72,7 +72,7 @@ const ABSTRACT_NETWORK = {
 const resourcePath = (relative) => `${process.env.PUBLIC_URL}${relative}`;
 
 function MintInfo() {
-  const { isConnected, account } = useWeb3();
+  const { isConnected, connectWallet, formatAddress, account } = useWeb3();
 
   const [activeFaq, setActiveFaq] = useState(null);
 
@@ -564,31 +564,37 @@ function MintInfo() {
           </div>
         </div>
         <div className="mint-actions">
-          <div className="counter">
-            <IoMdArrowDropleft
-              fontSize={30}
-              style={{ color: counter <= 1 ? "#D5D5D5" : "" }}
-              onClick={() => {
-                if (counter <= 1) return;
-                setCounter((prev) => prev - 1);
-              }}
-            />
-            <span>{counter}</span>
-            <IoMdArrowDropright
-              fontSize={30}
-              onClick={() => setCounter((prev) => prev + 1)}
-            />
-          </div>
-          <div className="mint-button-container">
-            <button>
-              Mint 2 for 0.03 - using{" "}
-              <span style={{ color: "#2CADF7" }}>Abstract</span> ETH
-            </button>
-            <button>
-              Mint 2 for 0.03 - using{" "}
-              <span style={{ color: "#0ECF74" }}>Mainnet</span> ETH
-            </button>
-          </div>
+          {isConnected ? (
+            <Fragment>
+              <div className="counter">
+                <IoMdArrowDropleft
+                  fontSize={30}
+                  style={{ color: counter <= 1 ? "#D5D5D5" : "" }}
+                  onClick={() => {
+                    if (counter <= 1) return;
+                    setCounter((prev) => prev - 1);
+                  }}
+                />
+                <span>{counter}</span>
+                <IoMdArrowDropright
+                  fontSize={30}
+                  onClick={() => setCounter((prev) => prev + 1)}
+                />
+              </div>
+              <div className="mint-button-container">
+                <button>
+                  Mint 2 for 0.03 - using{" "}
+                  <span style={{ color: "#2CADF7" }}>Abstract</span> ETH
+                </button>
+                <button>
+                  Mint 2 for 0.03 - using{" "}
+                  <span style={{ color: "#0ECF74" }}>Mainnet</span> ETH
+                </button>
+              </div>
+            </Fragment>
+          ) : (
+            <button className="connect">Connect Wallet</button>
+          )}
         </div>
         <div className="mint-description">
           <h3>AVC isn’t just a PFP</h3>
