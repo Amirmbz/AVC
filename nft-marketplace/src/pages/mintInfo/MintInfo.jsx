@@ -53,7 +53,7 @@ const MINT_INFO_DISABLED = true;
 
 const MAX_COUNTER = 10;
 const PHASE_1 = true;
-const PHASE_1_DUE = "2025/10/22";
+const PHASE_1_DUE = "2025/10/21 00:11:00";
 const PHASE_1_PRICE = 0.02;
 const PHASE_2 = true;
 const PHASE_2_DUE = "2025/10/29";
@@ -98,7 +98,9 @@ function MintInfo() {
   const [counter, setCounter] = useState(1);
 
   const [remainigPhase1, setRemainigPhase1] = useState("");
+  const [phase1Ended, setPhase1Ended] = useState(false);
   const [remainigPhase2, setRemainigPhase2] = useState("");
+  const [phase2Ended, setPhase2Ended] = useState(false);
 
   const tags = [
     {
@@ -335,11 +337,27 @@ function MintInfo() {
 
   useEffect(() => {
     let timer1 = startCountdown(PHASE_1_DUE, (time) => {
+      if (
+        time.days === 0 &&
+        time.hours === 0 &&
+        time.minutes === 0 &&
+        time.seconds === 0
+      ) {
+        setPhase1Ended(true);
+      }
       setRemainigPhase1(
         `${time.days}D ${time.hours}h ${time.minutes}m ${time.seconds}s`
       );
     });
     let timer2 = startCountdown(PHASE_2_DUE, (time) => {
+      if (
+        time.days === 0 &&
+        time.hours === 0 &&
+        time.minutes === 0 &&
+        time.seconds === 0
+      ) {
+        setPhase2Ended(true);
+      }
       setRemainigPhase2(
         `${time.days}D ${time.hours}h ${time.minutes}m ${time.seconds}s`
       );
@@ -528,11 +546,17 @@ function MintInfo() {
                 <div className="title">
                   <span>
                     Phase 1 - Vibelist -{" "}
-                    {PHASE_1 ? `Ending in ${remainigPhase1}` : "Ended"}
+                    {PHASE_1 && !phase1Ended
+                      ? `Ending in ${remainigPhase1}`
+                      : "Ended"}
                   </span>
                   <div className="actions">
                     <img
-                      src={PHASE_1 ? LockerWhiteOpen.default : LockRed.default}
+                      src={
+                        PHASE_1 && !phase1Ended
+                          ? LockerWhiteOpen.default
+                          : LockRed.default
+                      }
                       alt=""
                     />
                     <IoIosArrowDown
@@ -555,11 +579,17 @@ function MintInfo() {
                 <div className="title">
                   <span>
                     Phase 2 - Public sale -{" "}
-                    {PHASE_2 ? `Ending in ${remainigPhase2}` : "Ended"}
+                    {PHASE_2 && !phase2Ended
+                      ? `Ending in ${remainigPhase2}`
+                      : "Ended"}
                   </span>
                   <div className="actions">
                     <img
-                      src={PHASE_2 ? LockerWhiteOpen.default : LockRed.default}
+                      src={
+                        PHASE_2 && !phase2Ended
+                          ? LockerWhiteOpen.default
+                          : LockRed.default
+                      }
                       alt=""
                     />
                     <IoIosArrowDown
@@ -586,7 +616,7 @@ function MintInfo() {
           </div>
         </div>
         <div className="mint-actions">
-          {isConnected ? (
+          {!isConnected ? (
             <Fragment>
               <div className="counter">
                 <IoMdArrowDropleft
@@ -611,14 +641,16 @@ function MintInfo() {
                 <button>
                   Mint {counter} for{" "}
                   {(
-                    counter * (PHASE_1 ? PHASE_1_PRICE : PHASE_2_PRICE)
+                    counter *
+                    (PHASE_1 && !phase1Ended ? PHASE_1_PRICE : PHASE_2_PRICE)
                   ).toFixed(2)}{" "}
                   - using <span style={{ color: "#0ECF74" }}>Abstract</span> ETH
                 </button>
                 <button>
                   Mint {counter} for{" "}
                   {(
-                    counter * (PHASE_1 ? PHASE_1_PRICE : PHASE_2_PRICE)
+                    counter *
+                    (PHASE_1 && !phase1Ended ? PHASE_1_PRICE : PHASE_2_PRICE)
                   ).toFixed(2)}{" "}
                   - using <span style={{ color: "#2CADF7" }}>Mainnet</span> ETH
                 </button>
