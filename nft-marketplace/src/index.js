@@ -22,7 +22,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Web3Provider>
-      <RouterProvider router={router} />,
+      <RouterProvider router={router} />
     </Web3Provider>
   </React.StrictMode>
 );
