@@ -1,13 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './components/WalletConnection';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App, { Web3Provider } from "./components/WalletConnection";
+import reportWebVitals from "./reportWebVitals";
+import MintInfo from "./pages/mintInfo/MintInfo";
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/mint-info",
+    element: <MintInfo />,
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Web3Provider>
+      <RouterProvider router={router} />,
+    </Web3Provider>
   </React.StrictMode>
 );
 

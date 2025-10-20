@@ -1,0 +1,577 @@
+.mint-info-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    /* background: #4486AD; */
+    padding-bottom: 60px;
+}
+
+.mint-info-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    object-fit: cover;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.mint-info-section .navbar-links {
+    color: #fff;
+}
+
+.mint-info-section .nav-wallet-button {
+    color: #fff;
+}
+
+.mint-info {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    max-width: 1241px;
+    margin: 0 auto;
+    margin-top: 147px;
+
+    img {
+        object-fit: cover;
+        width: 600px;
+        height: 600px;
+        border-radius: 40px;
+    }
+}
+
+.mint-text {
+    width: 100%;
+
+    h3 {
+        margin: 0;
+        color: #FFF;
+        font-family: "VioletSans";
+        font-size: 48px;
+        font-weight: 400;
+        letter-spacing: -1.92px;
+    }
+
+    .tags {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        margin-top: 12px;
+
+        div {
+            display: inline-flex;
+            padding: 4px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFF;
+            font-family: "Inter";
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: -0.56px;
+        }
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        stroke-width: 1px;
+        background-color: rgba(255, 255, 255, 0.10);
+        margin: 20px 0;
+    }
+
+    .info-table {
+        th {
+            color: rgba(255, 255, 255, 0.60);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            padding-right: 81px;
+            text-align: start;
+        }
+
+        td {
+            padding-top: 12px;
+            color: #FFF;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 20px;
+        }
+    }
+
+    .progress {
+        margin: 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        color: #fff;
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #FFF;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+
+        .bar {
+            width: 100%;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.28);
+            height: 40px;
+
+            .progressed {
+                border-radius: 8px 0 0 8px;
+                background: #FFF;
+                height: 100%;
+            }
+        }
+    }
+
+    .steps {
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #fff;
+
+                span {
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 20px;
+                }
+
+                .actions {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+
+            .description {
+                color: #FFF;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 24px;
+            }
+        }
+    }
+}
+
+.mint-actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 24px;
+    max-width: 1241px;
+    width: 100%;
+    margin: 0 auto;
+
+    .counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 80px;
+        background: #fff;
+        border-radius: 99px;
+        border: 4px solid #000;
+        width: 232px;
+
+        svg {
+            cursor: pointer;
+
+        }
+
+        span {
+            font-family: "Inter";
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+    }
+
+    button {
+        background: #000;
+        padding: 18px 0;
+        text-align: center;
+        font-family: "Inter";
+        font-size: 20px;
+        font-weight: 700;
+        line-height: normal;
+        color: #fff;
+        letter-spacing: -0.8px;
+        border-radius: 32px;
+    }
+
+    .mint-button-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    button:nth-child(1) {
+        min-width: 566px;
+    }
+
+    button:nth-child(2) {
+        min-width: 402px;
+    }
+}
+
+.mint-description {
+    position: relative;
+    z-index: 1;
+    max-width: 1241px;
+    margin: 0 auto;
+    margin-top: 114px;
+
+    h3 {
+        color: #FFF;
+        font-size: 32px;
+        font-weight: 400;
+        margin: 0;
+        font-family: "VioletSans";
+    }
+
+    p {
+        font-family: "Inter";
+        margin: 0;
+        margin-top: 20px;
+        color: #FFF;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 130.363%;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .mint-info-section {
+        gap: 20px;
+        padding-bottom: 40px;
+    }
+
+    .mint-info {
+        max-width: 747px;
+        gap: 12px;
+        margin-top: 128px;
+
+        img {
+            width: 330px;
+            height: 443px;
+            border-radius: 25px;
+        }
+    }
+
+    .mint-text {
+        h3 {
+            font-size: 24px;
+            letter-spacing: -.96px;
+        }
+
+        .tags {
+            margin-top: 8px;
+
+            div {
+                padding: 0 4px;
+                border-radius: 4px;
+                font-size: 12px;
+                letter-spacing: -0.48px;
+            }
+        }
+
+        .info-table {
+            th {
+                font-size: 14px;
+                padding-right: 45px;
+            }
+
+            td {
+                padding-top: 8px;
+                font-size: 12px;
+            }
+        }
+
+        .progress {
+            margin: 12px 0;
+            gap: 8px;
+
+            .info {
+                font-size: 12px;
+            }
+
+            .bar {
+                width: 100%;
+                height: 28px;
+
+                .progressed {
+                    height: 100%;
+                }
+            }
+        }
+
+        .divider {
+            margin: 12px 0 !important;
+        }
+
+        .steps {
+            .accordion {
+                gap: 8px;
+
+                .title {
+                    span {
+                        font-size: 12px;
+                    }
+
+                    .actions {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+
+                        img {
+                            width: 16px;
+                            height: 16px;
+                        }
+
+                        svg {
+                            width: 16px;
+                            height: 16px;
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+                .description {
+                    font-size: 12px;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+
+    .mint-actions {
+        max-width: 747px;
+        gap: 12px;
+
+        .counter {
+            gap: 63px;
+            width: 178px;
+        }
+
+        button {
+            font-size: 12px;
+            letter-spacing: -0.48px;
+            border-radius: 32px;
+        }
+
+        .mint-button-container {
+            gap: 8px;
+        }
+
+        button:nth-child(1) {
+            min-width: 296px;
+        }
+
+        button:nth-child(2) {
+            min-width: 260px;
+        }
+    }
+
+    .mint-description {
+        max-width: 747px;
+        margin-top: 100px;
+
+        h3 {
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        p {
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 130.363%;
+        }
+    }
+}
+
+@media (max-width: 720px) {
+
+    .mint-info-section {
+        gap: 12px;
+        padding-bottom: 20px;
+    }
+
+    .mint-info {
+        max-width: 343px;
+        gap: 12px;
+        margin-top: 82px;
+
+        img {
+            width: 140px;
+            height: 307px;
+            border-radius: 16px;
+        }
+    }
+
+    .mint-text {
+        h3 {
+            font-size: 12px;
+            letter-spacing: -.48px;
+        }
+
+        .tags {
+            margin-top: 8px;
+            gap: 8px;
+
+            div {
+                padding: 0 4px;
+                border-radius: 4px;
+                font-size: 8px;
+                letter-spacing: -0.48px;
+            }
+        }
+
+        .info-table {
+            th {
+                font-size: 10px;
+                padding-right: 19px;
+            }
+
+            td {
+                padding-top: 0px;
+                font-size: 8px;
+                line-height: 130.363%;
+            }
+        }
+
+        .progress {
+            margin: 8px 0;
+            gap: 4px;
+
+            .info {
+                font-size: 10px;
+            }
+
+            .bar {
+                width: 100%;
+                height: 22px;
+
+                .progressed {
+                    height: 100%;
+                }
+            }
+        }
+
+        .divider {
+            margin: 8px 0 !important;
+        }
+
+        .steps {
+            .accordion {
+                gap: 4px;
+
+                .title {
+                    span {
+                        font-size: 8px;
+                    }
+
+                    .actions {
+                        gap: 8px;
+
+                        img {
+                            width: 12px;
+                            height: 12px;
+                        }
+
+                        svg {
+                            width: 12px;
+                            height: 12px;
+                            font-size: 12px;
+                        }
+                    }
+                }
+
+                .description {
+                    font-size: 8px;
+                    line-height: 12px;
+                }
+            }
+        }
+    }
+
+    .mint-actions {
+        max-width: 343px;
+        gap: 12px;
+
+        .counter {
+            gap: 19px;
+            width: 90px;
+            border-width: 2px;
+
+            span {
+                font-size: 16px;
+            }
+        }
+
+        button {
+            font-size: 8px;
+            letter-spacing: -0.32px;
+            padding: 6px 0;
+        }
+
+        .mint-button-container {
+            gap: 4px;
+        }
+
+        button:nth-child(1) {
+            padding-right: 28.5px;
+            padding-left: 28.5px;
+            min-width: 130px;
+        }
+
+        button:nth-child(2) {
+            padding-right: 18px;
+            padding-left: 18px;
+            min-width: 107px;
+        }
+    }
+
+    .mint-description {
+        max-width: 343px;
+        margin-top: 44px;
+
+        h3 {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        p {
+            margin-top: 8px;
+            font-size: 10px;
+        }
+    }
+}

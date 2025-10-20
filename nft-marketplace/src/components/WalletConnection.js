@@ -388,7 +388,7 @@ const WalletConnection = () => {
   );
 };
 
-const WalletButton = () => {
+export const WalletButton = () => {
   const { isConnected, connectWallet, formatAddress, account } = useWeb3();
 
   if (!isConnected) {
@@ -1056,6 +1056,7 @@ const HomePage = () => {
                 aria-disabled={true}
                 target="_blank"
                 rel="noreferrer noopener"
+                href="/mint-info"
               >
                 Mint Info
               </a>{" "}
@@ -1173,7 +1174,6 @@ const App = () => {
   };
 
   return (
-    <Web3Provider>
       <div className="app-shell">
         <nav className="navbar page-shell">
           <div className="nav-pill">
@@ -1318,7 +1318,6 @@ const App = () => {
           {currentPage === "status" && <MintStatusPage />}
         </main>
       </div>
-    </Web3Provider>
   );
 };
 
