@@ -214,6 +214,7 @@
     }
 
     button {
+        border: none;
         background: #000;
         padding: 18px 0;
         text-align: center;
@@ -238,6 +239,11 @@
 
     button:nth-child(2) {
         min-width: 402px;
+    }
+
+    .connect {
+        width: 100%;
+        background: #0ECF74;
     }
 }
 
@@ -397,6 +403,10 @@
 
         button:nth-child(2) {
             min-width: 260px;
+        }
+
+        .connect {
+            font-size: 20px;
         }
     }
 
@@ -558,6 +568,10 @@
             padding-right: 18px;
             padding-left: 18px;
             min-width: 107px;
+        }
+
+        .connect {
+            font-size: 14px;
         }
     }
 
