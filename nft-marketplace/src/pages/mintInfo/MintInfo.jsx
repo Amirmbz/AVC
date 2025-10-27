@@ -26,6 +26,7 @@ import {
   LogoWhite,
   LockRed,
   LockerWhiteOpen,
+  HamburgerWhite,
 } from "../../assets/svg";
 
 import {
@@ -38,6 +39,7 @@ import {
   IoMdArrowDropleft,
   IoMdArrowDropright,
 } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 
 import mintGif from "../../assets/video/mint.gif";
 import { startCountdown } from "../../utils/functions";
@@ -369,7 +371,7 @@ function MintInfo() {
   }, []);
 
   return (
-    <div>
+    <div className="mint-info-page">
       <div className="mint-info-section">
         <nav className="navbar page-shell">
           <div className="nav-pill">
@@ -430,7 +432,7 @@ function MintInfo() {
             ) : (
               <img
                 className="mobile-menu-toggle"
-                src={Hamburger.default}
+                src={HamburgerWhite.default}
                 onClick={() => setIsMenuOpen(true)}
               />
             )}
@@ -448,13 +450,17 @@ function MintInfo() {
         >
           <div className="logo-container">
             <button type="button" onClick={() => handleNavigate("home")}>
-              <img src={Logo.default} />
+              <img src={LogoWhite.default} />
             </button>
-            <img
+            <IoMdClose
+              className="mobile-menu-toggle-mint"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            />
+            {/* <img
               className="mobile-menu-toggle"
               src={Cross.default}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-            />
+            /> */}
           </div>
           <a onClick={() => handleNavigate("home", "who-are-we")}>Who We Are</a>{" "}
           <a onClick={() => handleNavigate("home", "faq-section")}>FAQs</a>{" "}
@@ -478,7 +484,7 @@ function MintInfo() {
               rel="noreferrer noopener"
               className="nav-pill-icon"
             >
-              <img src={TwitterBlack.default} />
+              <img src={TwitterWhite.default} />
             </a>
             <a
               target="_blank"
@@ -486,7 +492,7 @@ function MintInfo() {
               className="nav-pill-icon"
               aria-disabled={true}
             >
-              <img src={DiscordDisabled.default} />
+              <img src={DiscordWhite.default} />
             </a>{" "}
             <a
               aria-disabled={true}
@@ -495,7 +501,7 @@ function MintInfo() {
               className="nav-pill-icon"
               style={{ width: 30 }}
             >
-              <img src={ExpDisabled.default} />
+              <img src={ExpWhite.default} />
             </a>
           </div>
         </div>
@@ -616,11 +622,11 @@ function MintInfo() {
           </div>
         </div>
         <div className="mint-actions">
-          {isConnected ? (
+          {!isConnected ? (
             <Fragment>
               <div className="counter">
                 <IoMdArrowDropleft
-                  fontSize={30}
+                  fontSize={40}
                   style={{ color: counter <= 1 ? "#D5D5D5" : "" }}
                   onClick={() => {
                     if (counter <= 1) return;
@@ -629,7 +635,7 @@ function MintInfo() {
                 />
                 <span>{counter}</span>
                 <IoMdArrowDropright
-                  fontSize={30}
+                  fontSize={40}
                   style={{ color: counter >= MAX_COUNTER ? "#D5D5D5" : "" }}
                   onClick={() => {
                     if (counter >= MAX_COUNTER) return;
@@ -646,14 +652,18 @@ function MintInfo() {
                   ).toFixed(2)}{" "}
                   - using <span style={{ color: "#0ECF74" }}>Abstract</span> ETH
                 </button>
-                <button>
-                  Mint {counter} for{" "}
-                  {(
-                    counter *
-                    (PHASE_1 && !phase1Ended ? PHASE_1_PRICE : PHASE_2_PRICE)
-                  ).toFixed(2)}{" "}
-                  - using <span style={{ color: "#2CADF7" }}>Mainnet</span> ETH
-                </button>
+                <div className="sec-btn">
+                  <button>
+                    Mint {counter} for{" "}
+                    {(
+                      counter *
+                      (PHASE_1 && !phase1Ended ? PHASE_1_PRICE : PHASE_2_PRICE)
+                    ).toFixed(2)}{" "}
+                    - using <span style={{ color: "#2CADF7" }}>Mainnet</span>{" "}
+                    ETH
+                  </button>
+                  <span>*Using Third Party Bridge*</span>
+                </div>
               </div>
             </Fragment>
           ) : (
